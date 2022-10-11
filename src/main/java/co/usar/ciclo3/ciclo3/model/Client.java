@@ -15,7 +15,7 @@ import java.util.List;
 public class Client implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int idClient;
 
     @Column(length = 45)
     private String email;

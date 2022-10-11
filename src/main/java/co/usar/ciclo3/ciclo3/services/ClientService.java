@@ -21,11 +21,11 @@ public class ClientService {
         return clientRepository.getClient(id);
     }
     public Client save(Client cli){
-        Integer id = cli.getId();
+        Integer id = cli.getIdClient();
         if(id==null){
             return clientRepository.save(cli);
         } else {
-            Optional<Client> cliaux=clientRepository.getClient(cli.getId());
+            Optional<Client> cliaux=clientRepository.getClient(cli.getIdClient());
             if (cliaux.isEmpty()){
                 return clientRepository.save(cli);
             } else {

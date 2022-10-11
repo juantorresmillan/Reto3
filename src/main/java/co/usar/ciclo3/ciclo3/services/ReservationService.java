@@ -21,11 +21,11 @@ public class ReservationService {
         return reservationRepository.getReservation(id);
     }
     public Reservation save(Reservation res){
-        Integer id = res.getId();
+        Integer id = res.getIdReservation();
         if(id==null){
             return reservationRepository.save(res);
         } else {
-            Optional<Reservation> resaux=reservationRepository.getReservation(res.getId());
+            Optional<Reservation> resaux=reservationRepository.getReservation(res.getIdReservation());
             if (resaux.isEmpty()){
                 return reservationRepository.save(res);
             } else {

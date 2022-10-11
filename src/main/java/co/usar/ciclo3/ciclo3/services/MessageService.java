@@ -21,11 +21,11 @@ public class MessageService {
         return messageRepository.getMessage(id);
     }
     public Message save(Message mes){
-        Integer id = mes.getId();
+        Integer id = mes.getIdMessage();
         if(id==null){
             return messageRepository.save(mes);
         } else {
-            Optional<Message> mesaux=messageRepository.getMessage(mes.getId());
+            Optional<Message> mesaux=messageRepository.getMessage(mes.getIdMessage());
             if (mesaux.isEmpty()){
                 return messageRepository.save(mes);
             } else {
