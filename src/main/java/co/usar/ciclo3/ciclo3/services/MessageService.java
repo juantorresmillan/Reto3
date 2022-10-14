@@ -15,19 +15,21 @@ public class MessageService {
     @Autowired
     private MessageRepository messageRepository;
 
-    public List<Message> getAll(){
+    public List<Message> getAll() {
         return messageRepository.getAll();
     }
-    public Optional<Message> getMessage(int id){
+
+    public Optional<Message> getMessage(int id) {
         return messageRepository.getMessage(id);
     }
-    public Message save(Message mes){
+
+    public Message save(Message mes) {
         Integer id = mes.getIdMessage();
-        if(id==null){
+        if (id == null) {
             return messageRepository.save(mes);
         } else {
-            Optional<Message> mesaux=messageRepository.getMessage(mes.getIdMessage());
-            if (mesaux.isEmpty()){
+            Optional<Message> mesaux = messageRepository.getMessage(mes.getIdMessage());
+            if (mesaux.isEmpty()) {
                 return messageRepository.save(mes);
             } else {
                 return mes;
@@ -35,21 +37,21 @@ public class MessageService {
         }
     }
 
-    public Message update(Message mes){
-        Integer id = mes.getIdMessage();
-        if(id==null){
-            Optional<Message> gymaux = messageRepository.getMessage(mes.getIdMessage());
-            if(gymaux.isPresent()){
-                if(mes.getMessageText() != null){
-                    gymaux.get().setMessageText(mes.getMessageText());
-                }
-                return  messageRepository.save(gymaux.get());
-            }
-        }
-        return mes;
-    }
+    // public Message update(Message mes){
+    // Integer id = mes.getIdMessage();
+    // if(id==null){
+    // Optional<Message> gymaux = messageRepository.getMessage(mes.getIdMessage());
+    // if(gymaux.isPresent()){
+    // if(mes.getMessageText() != null){
+    // gymaux.get().setMessageText(mes.getMessageText());
+    // }
+    // return messageRepository.save(gymaux.get());
+    // }
+    // }
+    // return mes;
+    // }
 
-    public boolean delete(int idClient){
+    public boolean delete(int idClient) {
         boolean mes = getMessage(idClient).map(message -> {
             messageRepository.delete(message);
             return true;

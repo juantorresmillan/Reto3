@@ -11,39 +11,47 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/Category")
-@CrossOrigin(origins = "*", methods = {RequestMethod.GET,RequestMethod.PUT,RequestMethod.DELETE,RequestMethod.POST})
-public class CategoryController {   
-         
+@CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.PUT, RequestMethod.DELETE,
+        RequestMethod.POST })
+public class CategoryController {
 
+    @Autowired
+    private CategoryService categoryService;
 
-    rivate CategoryService categoryService;
+    @GetMapping("/all")
+    public List<Category> getAllCategory() {
 
+        return categoryService.getAll();
 
-    public List<Categor
-        return categoryService.getAll() ;
-        
-    
-
-    public Optional<Cate
-        return categoryService.getCategory(id);  
-        
-    
-
-    @ResponseStatus(HttpS
-    public Category save (@RequestBody 
-        return categorySrvice.save(cat); 
-        
-    
-    @PutMapping("/update")
-    @ResponseStatus(HttpStatus.CREATED)
-    public Category update (@RequestBody Category cat)
-    {     return categoryService.save(cat);
     }
 
+    @GetMapping("/{id}")
+    public Optional<Category> getCategory(@PathVariable("id") int id) {
+        return categoryService.getCategory(id);
 
+    }
+
+    @PostMapping("/save")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Category save(@RequestBody Category c) {
+        return categoryService.save(c);
+
+    }
+
+    @PutMapping("/update")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Category update(@RequestBody Category ct) {
+
+        return categoryService.actualizarCategory(ct);
+
+    }
+
+    @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public boolean delete(@PathVariable Integer id) {
+    public boolean delete(@PathVariable("id") int id) {
+
         return categoryService.delete(id);
+
     }
 
 }

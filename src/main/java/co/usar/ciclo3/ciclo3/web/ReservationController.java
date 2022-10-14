@@ -1,6 +1,5 @@
 package co.usar.ciclo3.ciclo3.web;
 
-import co.usar.ciclo3.ciclo3.model.Gymmachine;
 import co.usar.ciclo3.ciclo3.model.Reservation;
 import co.usar.ciclo3.ciclo3.services.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,32 +11,33 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/Reservation")
-@CrossOrigin(origins = "*", methods = {RequestMethod.GET,RequestMethod.PUT,RequestMethod.DELETE,RequestMethod.POST})
+@CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.PUT, RequestMethod.DELETE,
+        RequestMethod.POST })
 public class ReservationController {
 
-     @Autowired
+    @Autowired
     private ReservationService reservationService;
 
-     @GetMapping("/all")
-     public List<Reservation> getReservation(){
-         return reservationService.getAll();
-     }
+    @GetMapping("/all")
+    public List<Reservation> getReservation() {
+        return reservationService.getAll();
+    }
 
-     @GetMapping("/{id}")
-     public Optional<Reservation> getReservation(@PathVariable("id")Integer id){
-         return reservationService.getReservation(id);
-     }
+    @GetMapping("/{id}")
+    public Optional<Reservation> getReservation(@PathVariable("id") Integer id) {
+        return reservationService.getReservation(id);
+    }
 
-     @PostMapping("/save")
-     @ResponseStatus(HttpStatus.CREATED)
-    public Reservation save (@RequestBody Reservation res){
-         return reservationService.save(res);
-     }
+    @PostMapping("/save")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Reservation save(@RequestBody Reservation res) {
+        return reservationService.save(res);
+    }
 
     @PostMapping("/update")
     @ResponseStatus(HttpStatus.CREATED)
-    public Reservation update (@RequestBody Reservation res){
-         return reservationService.save(res);
+    public Reservation update(@RequestBody Reservation res) {
+        return reservationService.save(res);
     }
 
     @DeleteMapping("/{id}")
@@ -47,4 +47,3 @@ public class ReservationController {
     }
 
 }
-

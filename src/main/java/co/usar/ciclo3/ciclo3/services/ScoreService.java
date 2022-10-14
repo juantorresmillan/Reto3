@@ -15,19 +15,21 @@ public class ScoreService {
     @Autowired
     private ScoreRepository scoreRepository;
 
-    public List<Score> getAll(){
+    public List<Score> getAll() {
         return scoreRepository.getAll();
     }
-    public Optional<Score> getScore(int id){
+
+    public Optional<Score> getScore(int id) {
         return scoreRepository.getScore(id);
     }
-    public Score save(Score sco){
+
+    public Score save(Score sco) {
         Integer id = sco.getId();
-        if(id==null){
+        if (id == null) {
             return scoreRepository.save(sco);
         } else {
-            Optional<Score> scoaux=scoreRepository.getScore(sco.getId());
-            if (scoaux.isEmpty()){
+            Optional<Score> scoaux = scoreRepository.getScore(sco.getId());
+            if (scoaux.isEmpty()) {
                 return scoreRepository.save(sco);
             } else {
                 return sco;
@@ -35,21 +37,21 @@ public class ScoreService {
         }
     }
 
-    public Score update(Score sco){
-        Integer id = sco.getId();
-        if(id==null){
-            Optional<Score> scoaux = scoreRepository.getScore(sco.getId());
-            if(scoaux.isPresent()){
-                if(sco.getMessage() != null) {
-                    scoaux.get().setMessage(sco.getMessage());
-                }
-                return  scoreRepository.save(scoaux.get());
-            }
-        }
-        return sco;
-    }
+    // public Score update(Score sco){
+    // Integer id = sco.getId();
+    // if(id==null){
+    // Optional<Score> scoaux = scoreRepository.getScore(sco.getId());
+    // if(scoaux.isPresent()){
+    // if(sco.getMessage() != null) {
+    // scoaux.get().setMessage(sco.getMessage());
+    // }
+    // return scoreRepository.save(scoaux.get());
+    // }
+    // }
+    // return sco;
+    // }
 
-    public boolean delete(int idClient){
+    public boolean delete(int idClient) {
         boolean sco = getScore(idClient).map(reservation -> {
             scoreRepository.delete(reservation);
             return true;

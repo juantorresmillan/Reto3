@@ -15,19 +15,21 @@ public class GymmachineService {
     @Autowired
     private GymmachineRepository gymmachineRepository;
 
-    public List<Gymmachine> getAll(){
+    public List<Gymmachine> getAll() {
         return gymmachineRepository.getAll();
     }
-    public Optional<Gymmachine> getGymmachine(int id){
+
+    public Optional<Gymmachine> getGymmachine(int id) {
         return gymmachineRepository.getGymmachine(id);
     }
-    public Gymmachine save(Gymmachine gym){
+
+    public Gymmachine save(Gymmachine gym) {
         Integer id = gym.getId();
-        if(id==null){
+        if (id == null) {
             return gymmachineRepository.save(gym);
         } else {
-            Optional<Gymmachine> gymaux=gymmachineRepository.getGymmachine(gym.getId());
-            if (gymaux.isEmpty()){
+            Optional<Gymmachine> gymaux = gymmachineRepository.getGymmachine(gym.getId());
+            if (gymaux.isEmpty()) {
                 return gymmachineRepository.save(gym);
             } else {
                 return gym;
@@ -35,24 +37,25 @@ public class GymmachineService {
         }
     }
 
-    public Gymmachine update(Gymmachine gym){
-        Integer id = gym.getId();
-        if(id==null){
-            Optional<Gymmachine> gymaux = gymmachineRepository.getGymmachine(gym.getId());
-            if(gymaux.isPresent()){
-                if(gym.getName() != null){
-                    gymaux.get().setName(gym.getName());
-                }
-                if(gym.getBrand()!=null){
-                    gymaux.get().setBrand(gym.getBrand());
-                }
-                return  gymmachineRepository.save(gymaux.get());
-            }
-        }
-        return gym;
-    }
+    // public Gymmachine update(Gymmachine gym){
+    // Integer id = gym.getId();
+    // if(id==null){
+    // Optional<Gymmachine> gymaux =
+    // gymmachineRepository.getGymmachine(gym.getId());
+    // if(gymaux.isPresent()){
+    // if(gym.getName() != null){
+    // gymaux.get().setName(gym.getName());
+    // }
+    // if(gym.getBrand()!=null){
+    // gymaux.get().setBrand(gym.getBrand());
+    // }
+    // return gymmachineRepository.save(gymaux.get());
+    // }
+    // }
+    // return gym;
+    // }
 
-    public boolean delete(int idClient){
+    public boolean delete(int idClient) {
         boolean gym = getGymmachine(idClient).map(gymmachine -> {
             gymmachineRepository.delete(gymmachine);
             return true;
