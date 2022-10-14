@@ -36,7 +36,8 @@ public class CategoryController {
 
     @PostMapping("/update")
     @ResponseStatus(HttpStatus.CREATED)
-    public Category update (@RequestBody Category cat){return categoryService.save(cat);
+    public Category update (@RequestBody Category cat){
+         return categoryService.save(cat);
     }
 
     @DeleteMapping("/{id}")

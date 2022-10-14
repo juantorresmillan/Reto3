@@ -39,7 +39,7 @@ public class ReservationService {
         Integer id = res.getIdReservation();
         if(id==null){
             Optional<Reservation> resaux = reservationRepository.getReservation(res.getIdReservation());
-            if(!resaux.isEmpty()){
+            if(resaux.isPresent()){
                 if(res.getStartDate() != null){
                     resaux.get().setStartDate(res.getStartDate());
                 }

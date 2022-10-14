@@ -14,6 +14,9 @@ public class AdminRepository {
     @Autowired
     private AdminCrudRepository adminCrudRepository;
 
+    public AdminRepository(){
+    }
+
     public List<Admin> getAll(){
         return (List<Admin>) adminCrudRepository.findAll();
     }

@@ -40,7 +40,7 @@ public class CategoryService {
         Integer id = cat.getId();
         if(id==null){
             Optional<Category> cataux = categoryRepository.getCategory(cat.getId());
-            if(!cataux.isEmpty()){
+            if(cataux.isPresent()){
                 if(cat.getDescription() != null){
                     cataux.get().setDescription(cat.getDescription());
                 }

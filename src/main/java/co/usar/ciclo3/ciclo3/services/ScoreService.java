@@ -39,7 +39,7 @@ public class ScoreService {
         Integer id = sco.getId();
         if(id==null){
             Optional<Score> scoaux = scoreRepository.getScore(sco.getId());
-            if(!scoaux.isEmpty()){
+            if(scoaux.isPresent()){
                 if(sco.getMessage() != null) {
                     scoaux.get().setMessage(sco.getMessage());
                 }

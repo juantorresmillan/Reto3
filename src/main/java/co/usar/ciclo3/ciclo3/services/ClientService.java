@@ -38,7 +38,7 @@ public class ClientService {
         Integer id = cli.getIdClient();
         if(id==null){
             Optional<Client> cliaux = clientRepository.getClient(cli.getIdClient());
-            if(!cliaux.isEmpty()){
+            if(cliaux.isPresent()){
                 if(cli.getName() != null){
                     cliaux.get().setName(cli.getName());
                 }

@@ -39,7 +39,7 @@ public class GymmachineService {
         Integer id = gym.getId();
         if(id==null){
             Optional<Gymmachine> gymaux = gymmachineRepository.getGymmachine(gym.getId());
-            if(!gymaux.isEmpty()){
+            if(gymaux.isPresent()){
                 if(gym.getName() != null){
                     gymaux.get().setName(gym.getName());
                 }

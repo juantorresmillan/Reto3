@@ -20,16 +20,16 @@ public class Message implements Serializable {
     @Column(name="message")
     private int idMessage;
 
-    @Column(length = 250)
+    @Column(length = 250, nullable = false)
     private String messageText;
 
     @ManyToOne
-    @JoinColumn(name="machineId")
-    @JsonIgnoreProperties({"messages","reservations"})
+    @JoinColumn(name="machineId", referencedColumnName = "id")
+    @JsonIgnoreProperties({"messages","reservations", "client"})
     private Gymmachine machine;
 
     @ManyToOne
-    @JoinColumn(name="clientId")
+    @JoinColumn(name="clientId", referencedColumnName = "idClient")
     @JsonIgnoreProperties({"messages","reservations"})
     private Client client;
 }
