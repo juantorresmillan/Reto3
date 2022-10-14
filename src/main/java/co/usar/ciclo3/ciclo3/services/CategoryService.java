@@ -42,7 +42,7 @@ public class CategoryService {
 
     public Category actualizarCategory(Category cat) {
         Integer id = cat.getId();
-        if (id == null) {
+        if (id != null) {
             Optional<Category> cataux = categoryRepository.getCategory(cat.getId());
             if (!cataux.isEmpty()) {
                 if (cat.getDescription() != null) {
