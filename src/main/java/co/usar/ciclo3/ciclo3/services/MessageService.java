@@ -39,7 +39,7 @@ public class MessageService {
         Integer id = mes.getIdMessage();
         if(id==null){
             Optional<Message> gymaux = messageRepository.getMessage(mes.getIdMessage());
-            if(!gymaux.isEmpty()){
+            if(gymaux.isPresent()){
                 if(mes.getMessageText() != null){
                     gymaux.get().setMessageText(mes.getMessageText());
                 }

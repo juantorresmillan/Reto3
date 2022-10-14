@@ -1,6 +1,5 @@
 package co.usar.ciclo3.ciclo3.services;
 
-import co.usar.ciclo3.ciclo3.model.Admin;
 import co.usar.ciclo3.ciclo3.model.Category;
 import co.usar.ciclo3.ciclo3.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +22,10 @@ public class CategoryService {
         return categoryRepository.getCategory(id);
     }
 
+    /**
+     * @param cat
+     * @return
+     */
     public Category save(Category cat) {
         Integer id = cat.getId();
         if (id == null) {
@@ -37,10 +40,9 @@ public class CategoryService {
         }
     }
 
-    public Category update(Category cat) {
+    public Category actualizarCategory(Category cat) {
         Integer id = cat.getId();
-
-        if (id == null) {
+        if (id != null) {
             Optional<Category> cataux = categoryRepository.getCategory(cat.getId());
             if (!cataux.isEmpty()) {
                 if (cat.getDescription() != null) {

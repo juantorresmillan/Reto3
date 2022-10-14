@@ -36,7 +36,8 @@ public class ReservationController {
 
     @PostMapping("/update")
     @ResponseStatus(HttpStatus.CREATED)
-    public Reservation update (@RequestBody Reservation res){return reservationService.save(res);
+    public Reservation update (@RequestBody Reservation res){
+         return reservationService.save(res);
     }
 
     @DeleteMapping("/{id}")
@@ -44,4 +45,6 @@ public class ReservationController {
     public boolean delete(@PathVariable Integer id) {
         return reservationService.delete(id);
     }
+
 }
+

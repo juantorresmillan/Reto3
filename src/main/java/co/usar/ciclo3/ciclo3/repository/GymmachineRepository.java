@@ -14,6 +14,9 @@ public class GymmachineRepository {
     @Autowired
     private GymmachineCrudRepository gymmachineCrudRepository;
 
+    public GymmachineRepository(){
+    }
+
     public List<Gymmachine> getAll(){
         return (List<Gymmachine>) gymmachineCrudRepository.findAll();
     }

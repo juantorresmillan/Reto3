@@ -14,6 +14,9 @@ public class ReservationRepository {
     @Autowired
     private ReservationCrudRepository reservationCrudRepository;
 
+    public ReservationRepository(){
+    }
+
     public List<Reservation> getAll(){
         return (List<Reservation>) reservationCrudRepository.findAll();
     }

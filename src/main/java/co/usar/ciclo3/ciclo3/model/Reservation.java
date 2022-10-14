@@ -6,7 +6,6 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity
@@ -19,30 +18,26 @@ public class Reservation implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idReservation;
 
-
+    @Column(nullable = false)
     private Date startDate;
 
-    //*SimpleDateFormat parser=new SimpleDateFormat("DD/MM/YYYY");
-
+    @Column(nullable = false)
     private Date devolutionDate;
 
+    @Column(nullable = false)
     private String status="created";
 
     @ManyToOne
-    @JoinColumn(name = "gymmachineId")
+    @JoinColumn(name = "gymmachineId", referencedColumnName = "id")
     @JsonIgnoreProperties("reservations")
     private Gymmachine machine;
 
     @ManyToOne
-    @JoinColumn(name = "clientId")
+    @JoinColumn(name = "clientId", referencedColumnName = "idClient")
     @JsonIgnoreProperties({"reservations","messages"})
     private Client client;
 
     @OneToOne(cascade = {CascadeType.REMOVE},mappedBy="reservation")
     @JsonIgnoreProperties("reservation")
     private Score score;
-
-
-
-
 }
