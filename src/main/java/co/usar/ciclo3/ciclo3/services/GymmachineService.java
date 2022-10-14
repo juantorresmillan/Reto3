@@ -1,5 +1,6 @@
 package co.usar.ciclo3.ciclo3.services;
 
+import co.usar.ciclo3.ciclo3.model.Client;
 import co.usar.ciclo3.ciclo3.model.Gymmachine;
 import co.usar.ciclo3.ciclo3.repository.GymmachineRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,5 +33,30 @@ public class GymmachineService {
                 return gym;
             }
         }
+    }
+
+    public Gymmachine update(Gymmachine gym){
+        Integer id = gym.getId();
+        if(id==null){
+            Optional<Gymmachine> gymaux = gymmachineRepository.getGymmachine(gym.getId());
+            if(!gymaux.isEmpty()){
+                if(gym.getName() != null){
+                    gymaux.get().setName(gym.getName());
+                }
+                if(gym.getBrand()!=null){
+                    gymaux.get().setBrand(gym.getBrand());
+                }
+                return  gymmachineRepository.save(gymaux.get());
+            }
+        }
+        return gym;
+    }
+
+    public boolean delete(int idClient){
+        boolean gym = getGymmachine(idClient).map(gymmachine -> {
+            gymmachineRepository.delete(gymmachine);
+            return true;
+        }).orElse(false);
+        return gym;
     }
 }

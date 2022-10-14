@@ -1,5 +1,6 @@
 package co.usar.ciclo3.ciclo3.web;
 
+import co.usar.ciclo3.ciclo3.model.Gymmachine;
 import co.usar.ciclo3.ciclo3.model.Score;
 import co.usar.ciclo3.ciclo3.services.ScoreService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,4 +33,15 @@ public class ScoreController {
     public Score save (@RequestBody Score sco){
          return scoreService.save(sco);
      }
+
+    @PostMapping("/update")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Score update (@RequestBody Score sco){return scoreService.save(sco);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public boolean delete(@PathVariable Integer id) {
+        return scoreService.delete(id);
+    }
 }

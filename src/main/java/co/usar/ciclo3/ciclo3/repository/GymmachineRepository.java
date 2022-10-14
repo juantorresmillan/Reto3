@@ -20,7 +20,12 @@ public class GymmachineRepository {
     public Optional<Gymmachine> getGymmachine(int id){
         return gymmachineCrudRepository.findById(id);
     }
-    public Gymmachine save(Gymmachine p){
-        return gymmachineCrudRepository.save(p);
+
+    public Gymmachine save(Gymmachine gym){
+        return gymmachineCrudRepository.save(gym);
+    }
+
+    public void delete (Gymmachine gymmachine){
+        gymmachineCrudRepository.delete(gymmachine);
     }
 }

@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity
@@ -20,6 +21,9 @@ public class Reservation implements Serializable {
 
 
     private Date startDate;
+
+    //*SimpleDateFormat parser=new SimpleDateFormat("DD/MM/YYYY");
+
     private Date devolutionDate;
 
     private String status="created";

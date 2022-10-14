@@ -20,7 +20,12 @@ public class MessageRepository {
     public Optional<Message> getMessage(int id){
         return messageCrudRepository.findById(id);
     }
-    public Message save(Message p){
-        return messageCrudRepository.save(p);
+
+    public Message save(Message mes){
+        return messageCrudRepository.save(mes);
+    }
+
+    public void delete(Message message){
+        messageCrudRepository.delete(message);
     }
 }

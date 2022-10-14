@@ -1,5 +1,6 @@
 package co.usar.ciclo3.ciclo3.services;
 
+import co.usar.ciclo3.ciclo3.model.Gymmachine;
 import co.usar.ciclo3.ciclo3.model.Message;
 import co.usar.ciclo3.ciclo3.repository.MessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,5 +33,27 @@ public class MessageService {
                 return mes;
             }
         }
+    }
+
+    public Message update(Message mes){
+        Integer id = mes.getIdMessage();
+        if(id==null){
+            Optional<Message> gymaux = messageRepository.getMessage(mes.getIdMessage());
+            if(!gymaux.isEmpty()){
+                if(mes.getMessageText() != null){
+                    gymaux.get().setMessageText(mes.getMessageText());
+                }
+                return  messageRepository.save(gymaux.get());
+            }
+        }
+        return mes;
+    }
+
+    public boolean delete(int idClient){
+        boolean mes = getMessage(idClient).map(message -> {
+            messageRepository.delete(message);
+            return true;
+        }).orElse(false);
+        return mes;
     }
 }

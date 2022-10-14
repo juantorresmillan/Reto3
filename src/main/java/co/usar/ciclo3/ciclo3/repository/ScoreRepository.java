@@ -15,6 +15,7 @@ public class ScoreRepository {
     private ScoreCrudRepository scoreCrudRepository;
 
     public List<Score> getAll(){
+
         return (List<Score>) scoreCrudRepository.findAll();
     }
     public Optional<Score> getScore(int id){
@@ -22,5 +23,8 @@ public class ScoreRepository {
     }
     public Score save(Score p){
         return scoreCrudRepository.save(p);
+    }
+    public void delete (Score score){
+        scoreCrudRepository.delete(score);
     }
 }

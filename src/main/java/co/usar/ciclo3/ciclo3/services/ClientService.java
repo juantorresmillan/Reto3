@@ -34,4 +34,29 @@ public class ClientService {
         }
     }
 
+    public Client update(Client cli){
+        Integer id = cli.getIdClient();
+        if(id==null){
+            Optional<Client> cliaux = clientRepository.getClient(cli.getIdClient());
+            if(!cliaux.isEmpty()){
+                if(cli.getName() != null){
+                    cliaux.get().setName(cli.getName());
+                }
+                if(cli.getEmail()!=null){
+                    cliaux.get().setEmail(cli.getEmail());
+                }
+                return  clientRepository.save(cliaux.get());
+            }
+        }
+        return cli;
+    }
+
+    public boolean delete(int idClient){
+        boolean cli = getClient(idClient).map(category -> {
+            clientRepository.delete(category);
+            return true;
+        }).orElse(false);
+        return cli;
+    }
+
 }

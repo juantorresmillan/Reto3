@@ -1,5 +1,6 @@
 package co.usar.ciclo3.ciclo3.web;
 
+import co.usar.ciclo3.ciclo3.model.Category;
 import co.usar.ciclo3.ciclo3.model.Gymmachine;
 import co.usar.ciclo3.ciclo3.services.GymmachineService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,4 +33,15 @@ public class GymmachineController {
     public Gymmachine save (@RequestBody Gymmachine gym){
          return gymmachineService.save(gym);
      }
+
+    @PostMapping("/update")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Gymmachine update (@RequestBody Gymmachine gym){return gymmachineService.save(gym);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public boolean delete(@PathVariable Integer id) {
+        return gymmachineService.delete(id);
+    }
 }
