@@ -12,31 +12,33 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/Category")
-@CrossOrigin(origins = "*", methods = {RequestMethod.GET,RequestMethod.PUT,RequestMethod.DELETE,RequestMethod.POST})
+@CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.PUT, RequestMethod.DELETE,
+        RequestMethod.POST })
 public class CategoryController {
 
-     @Autowired
+    @Autowired
     private CategoryService categoryService;
 
-     @GetMapping("/all")
-     public List<Category> getCategory(){
-         return categoryService.getAll();
-     }
+    @GetMapping("/all")
+    public List<Category> getCategory() {
+        return categoryService.getAll();
+    }
 
-     @GetMapping("/{id}")
-     public Optional<Category> getCategory(@PathVariable("id")Integer id){
-         return categoryService.getCategory(id);
-     }
+    @GetMapping("/{id}")
+    public Optional<Category> getCategory(@PathVariable("id") Integer id) {
+        return categoryService.getCategory(id);
+    }
 
-     @PostMapping("/save")
-     @ResponseStatus(HttpStatus.CREATED)
-     public Category save (@RequestBody Category cat){
-         return categoryService.save(cat);
-     }
-
-    @PostMapping("/update")
+    @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
-    public Category update (@RequestBody Category cat){return categoryService.save(cat);
+    public Category save(@RequestBody Category cat) {
+        return categoryService.save(cat);
+    }
+
+    @PutMapping("/update")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Category update(@RequestBody Category cat) {
+        return categoryService.update(cat);
     }
 
     @DeleteMapping("/{id}")
