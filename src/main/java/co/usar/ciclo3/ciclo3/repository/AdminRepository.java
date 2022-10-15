@@ -10,7 +10,6 @@ import java.util.Optional;
 
 @Repository
 public class AdminRepository {
-
     @Autowired
     private AdminCrudRepository adminCrudRepository;
 
@@ -28,7 +27,7 @@ public class AdminRepository {
         return adminCrudRepository.save(adm);
     }
 
-    public void delete(Admin admin){
-        adminCrudRepository.delete(admin);
+    public void delete(Admin adm){
+        adminCrudRepository.delete(adm);
     }
 }

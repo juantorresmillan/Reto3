@@ -23,6 +23,8 @@ public class AdminService {
     public Optional<Admin> getAdmin(int id){
         return adminRepository.getAdmin(id);
     }
+
+
     public Admin save(Admin adm){
         Integer id = adm.getId();
         if(id==null){
@@ -41,7 +43,7 @@ public class AdminService {
         Integer id = adm.getId();
         if (id != null) {
             Optional<Admin> admaux = adminRepository.getAdmin(adm.getId());
-            if (admaux.isPresent()) {
+            if (!admaux.isEmpty()) {
                 if (adm.getName() != null) {
                     admaux.get().setName(adm.getName());
                 }
@@ -59,8 +61,8 @@ public class AdminService {
     }
 
     public boolean delete(int id){
-        boolean adm = getAdmin(id).map(category -> {
-            adminRepository.delete(category);
+        boolean adm = getAdmin(id).map(admin -> {
+            adminRepository.delete(admin);
             return true;
         }).orElse(false);
         return adm;

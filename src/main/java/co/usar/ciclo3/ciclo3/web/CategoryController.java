@@ -34,10 +34,10 @@ public class CategoryController {
          return categoryService.save(cat);
      }
 
-    @PostMapping("/update")
+    @PutMapping("/update")
     @ResponseStatus(HttpStatus.CREATED)
     public Category update (@RequestBody Category cat){
-         return categoryService.save(cat);
+         return categoryService.update(cat);
     }
 
     @DeleteMapping("/{id}")

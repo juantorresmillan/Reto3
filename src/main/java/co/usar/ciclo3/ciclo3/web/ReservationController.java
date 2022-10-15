@@ -1,7 +1,8 @@
 package co.usar.ciclo3.ciclo3.web;
 
-import co.usar.ciclo3.ciclo3.model.Gymmachine;
 import co.usar.ciclo3.ciclo3.model.Reservation;
+import co.usar.ciclo3.ciclo3.model.report.CountClient;
+import co.usar.ciclo3.ciclo3.model.report.CountStatus;
 import co.usar.ciclo3.ciclo3.services.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,16 +29,16 @@ public class ReservationController {
          return reservationService.getReservation(id);
      }
 
-     @PostMapping("/save")
-     @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping("/save")
+    @ResponseStatus(HttpStatus.CREATED)
     public Reservation save (@RequestBody Reservation res){
          return reservationService.save(res);
-     }
+    }
 
-    @PostMapping("/update")
+    @PutMapping("/update")
     @ResponseStatus(HttpStatus.CREATED)
     public Reservation update (@RequestBody Reservation res){
-         return reservationService.save(res);
+         return reservationService.update(res);
     }
 
     @DeleteMapping("/{id}")
@@ -46,5 +47,25 @@ public class ReservationController {
         return reservationService.delete(id);
     }
 
+    //*    @PostMapping("/all")
+//*    @ResponseStatus(HttpStatus.CREATED)
+//*    public List<Reservation> list2() {
+//*        return (List<Reservation>) reservationService.findAll();
+//*    }
+
+    //*    @GetMapping("/report-clients")
+//*    public List<CountClient> getReportTopClients(){
+//*        return reservationService.getTopClients();
+//*    }
+//*    @GetMapping("/report-dates/{dateOne}/{dateTwo}")
+//*    public List<Reservation> getReportReservationsDate(@PathVariable("dateOne") String dateOne, @PathVariable("dateTwo") String dateTwo){
+//*        return reservationService.getReservationPeriod(dateOne, dateTwo);
+//*    }
+//*    @GetMapping("/report-status")
+//*    public CountStatus getReportStatusReservations(){
+//*        return  reservationService.getReservationsStatus();
+//*    }
+//*    public ReservationService() {
+//*    }
 }
 

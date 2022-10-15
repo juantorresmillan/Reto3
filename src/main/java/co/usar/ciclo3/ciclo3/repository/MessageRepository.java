@@ -10,7 +10,6 @@ import java.util.Optional;
 
 @Repository
 public class MessageRepository {
-
     @Autowired
     private MessageCrudRepository messageCrudRepository;
 
@@ -28,7 +27,7 @@ public class MessageRepository {
         return messageCrudRepository.save(mes);
     }
 
-    public void delete(Message message){
-        messageCrudRepository.delete(message);
+    public void delete(Message mes){
+        messageCrudRepository.delete(mes);
     }
 }

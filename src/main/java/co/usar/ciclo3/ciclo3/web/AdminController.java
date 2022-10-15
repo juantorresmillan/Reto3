@@ -18,21 +18,25 @@ public class AdminController {
      private AdminService adminService;
 
      @GetMapping("/all")
-     public List<Admin> getAdmin(){return adminService.getAll();
+     public List<Admin> getAdmin(){
+          return adminService.getAll();
      }
 
      @GetMapping("/{id}")
-     public Optional<Admin> getAdmin(@PathVariable("id")Integer id){return adminService.getAdmin(id);
+     public Optional<Admin> getAdmin(@PathVariable("id")Integer id){
+          return adminService.getAdmin(id);
      }
 
      @PostMapping("/save")
      @ResponseStatus(HttpStatus.CREATED)
-     public Admin save (@RequestBody Admin adm){return adminService.save(adm);
+     public Admin save (@RequestBody Admin adm){
+          return adminService.save(adm);
      }
 
-     @PostMapping("/update")
+     @PutMapping("/update")
      @ResponseStatus(HttpStatus.CREATED)
-     public Admin update (@RequestBody Admin adm){return adminService.save(adm);
+     public Admin update (@RequestBody Admin adm){
+          return adminService.update(adm);
      }
 
      @DeleteMapping("/{id}")

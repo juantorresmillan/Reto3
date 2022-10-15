@@ -10,7 +10,6 @@ import java.util.Optional;
 
 @Repository
 public class GymmachineRepository {
-
     @Autowired
     private GymmachineCrudRepository gymmachineCrudRepository;
 
@@ -28,7 +27,7 @@ public class GymmachineRepository {
         return gymmachineCrudRepository.save(gym);
     }
 
-    public void delete (Gymmachine gymmachine){
-        gymmachineCrudRepository.delete(gymmachine);
+    public void delete (Gymmachine gym){
+        gymmachineCrudRepository.delete(gym);
     }
 }

@@ -34,9 +34,10 @@ public class GymmachineController {
          return gymmachineService.save(gym);
      }
 
-    @PostMapping("/update")
+    @PutMapping("/update")
     @ResponseStatus(HttpStatus.CREATED)
-    public Gymmachine update (@RequestBody Gymmachine gym){return gymmachineService.save(gym);
+    public Gymmachine update (@RequestBody Gymmachine gym){
+         return gymmachineService.update(gym);
     }
 
     @DeleteMapping("/{id}")

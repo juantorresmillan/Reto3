@@ -34,9 +34,10 @@ public class MessageController {
          return messageService.save(mes);
      }
 
-    @PostMapping("/update")
+    @PutMapping("/update")
     @ResponseStatus(HttpStatus.CREATED)
-    public Message update (@RequestBody Message mes){return messageService.save(mes);
+    public Message update (@RequestBody Message mes){
+         return messageService.update(mes);
     }
 
     @DeleteMapping("/{id}")

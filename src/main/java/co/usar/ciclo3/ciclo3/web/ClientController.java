@@ -1,5 +1,6 @@
 package co.usar.ciclo3.ciclo3.web;
 
+import co.usar.ciclo3.ciclo3.model.Category;
 import co.usar.ciclo3.ciclo3.model.Client;
 import co.usar.ciclo3.ciclo3.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,4 +33,16 @@ public class ClientController {
     public Client save (@RequestBody Client cli){
          return clientService.save(cli);
      }
+
+    @PutMapping("/update")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Client update (@RequestBody Client cli){
+        return clientService.update(cli);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public boolean delete(@PathVariable Integer id) {
+        return clientService.delete(id);
+    }
 }

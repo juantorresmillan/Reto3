@@ -10,7 +10,6 @@ import java.util.Optional;
 
 @Repository
 public class ClientRepository {
-
     @Autowired
     private ClientCrudRepository clientCrudRepository;
 
@@ -28,8 +27,8 @@ public class ClientRepository {
         return clientCrudRepository.save(cli);
     }
 
-    public void delete (Client client){
-        clientCrudRepository.delete(client);
+    public void delete (Client cli){
+        clientCrudRepository.delete(cli);
     }
 
 }

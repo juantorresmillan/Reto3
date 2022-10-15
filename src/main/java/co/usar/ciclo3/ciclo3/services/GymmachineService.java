@@ -21,6 +21,7 @@ public class GymmachineService {
     public Optional<Gymmachine> getGymmachine(int id){
         return gymmachineRepository.getGymmachine(id);
     }
+
     public Gymmachine save(Gymmachine gym){
         Integer id = gym.getId();
         if(id==null){
@@ -35,25 +36,39 @@ public class GymmachineService {
         }
     }
 
-    public Gymmachine update(Gymmachine gym){
+    public Gymmachine update(Gymmachine gym) {
         Integer id = gym.getId();
-        if(id==null){
+        if (id != null) {
             Optional<Gymmachine> gymaux = gymmachineRepository.getGymmachine(gym.getId());
-            if(gymaux.isPresent()){
-                if(gym.getName() != null){
+            if (!gymaux.isEmpty()) {
+                if (gym.getName() != null) {
                     gymaux.get().setName(gym.getName());
                 }
-                if(gym.getBrand()!=null){
+                if (gym.getBrand() != null) {
                     gymaux.get().setBrand(gym.getBrand());
                 }
-                return  gymmachineRepository.save(gymaux.get());
+                Integer year = gym.getYear();
+                if (year != null) {
+                    gymaux.get().setYear(gym.getYear());
+                }
+                if (gym.getDescription() != null) {
+                    gymaux.get().setDescription(gym.getDescription());
+                }
+                if (gym.getCategory() != null) {
+                    gymaux.get().setCategory(gym.getCategory());
+                }
+                gymmachineRepository.save(gymaux.get());
+                return gymaux.get();
+            } else {
+                return gym;
             }
+        } else {
+            return gym;
         }
-        return gym;
     }
 
-    public boolean delete(int idClient){
-        boolean gym = getGymmachine(idClient).map(gymmachine -> {
+    public boolean delete(int id){
+        boolean gym = getGymmachine(id).map(gymmachine -> {
             gymmachineRepository.delete(gymmachine);
             return true;
         }).orElse(false);

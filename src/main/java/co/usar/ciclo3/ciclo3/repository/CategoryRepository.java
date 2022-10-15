@@ -10,7 +10,6 @@ import java.util.Optional;
 
 @Repository
 public class CategoryRepository {
-
     @Autowired
     private CategoryCrudRepository categoryCrudRepository;
 
@@ -28,7 +27,7 @@ public class CategoryRepository {
         return categoryCrudRepository.save(cat);
     }
 
-    public void delete(Category category){
-        categoryCrudRepository.delete(category);
+    public void delete(Category cat){
+        categoryCrudRepository.delete(cat);
     }
 }

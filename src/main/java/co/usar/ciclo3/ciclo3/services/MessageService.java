@@ -21,6 +21,7 @@ public class MessageService {
     public Optional<Message> getMessage(int id){
         return messageRepository.getMessage(id);
     }
+
     public Message save(Message mes){
         Integer id = mes.getIdMessage();
         if(id==null){
@@ -35,22 +36,26 @@ public class MessageService {
         }
     }
 
-    public Message update(Message mes){
+    public Message update(Message mes) {
         Integer id = mes.getIdMessage();
-        if(id==null){
-            Optional<Message> gymaux = messageRepository.getMessage(mes.getIdMessage());
-            if(gymaux.isPresent()){
-                if(mes.getMessageText() != null){
-                    gymaux.get().setMessageText(mes.getMessageText());
+        if (id != null) {
+            Optional<Message> mesaux = messageRepository.getMessage(mes.getIdMessage());
+            if (!mesaux.isEmpty()) {
+                if (mes.getMessageText() != null) {
+                    mesaux.get().setMessageText(mes.getMessageText());
                 }
-                return  messageRepository.save(gymaux.get());
+                messageRepository.save(mesaux.get());
+                return mesaux.get();
+            } else {
+                return mes;
             }
+        } else {
+            return mes;
         }
-        return mes;
     }
 
-    public boolean delete(int idClient){
-        boolean mes = getMessage(idClient).map(message -> {
+    public boolean delete(int idMessage){
+        boolean mes = getMessage(idMessage).map(message -> {
             messageRepository.delete(message);
             return true;
         }).orElse(false);

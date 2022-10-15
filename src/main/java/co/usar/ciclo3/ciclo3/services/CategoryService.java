@@ -38,9 +38,9 @@ public class CategoryService {
 
     public Category update(Category cat){
         Integer id = cat.getId();
-        if(id==null){
+        if(id!=null){
             Optional<Category> cataux = categoryRepository.getCategory(cat.getId());
-            if(cataux.isPresent()){
+            if(!cataux.isEmpty()){
                 if(cat.getDescription() != null){
                     cataux.get().setDescription(cat.getDescription());
                 }

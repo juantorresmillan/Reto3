@@ -33,7 +33,7 @@ public class Gymmachine implements Serializable {
 
     @ManyToOne
     @JoinColumn(name="categoryId")
-    @JsonIgnoreProperties({"machines","messages","reservations"})
+    @JsonIgnoreProperties({"machines","messages"})
     private Category category;
 
     @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "machine")

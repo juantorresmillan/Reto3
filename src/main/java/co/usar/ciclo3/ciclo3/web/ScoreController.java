@@ -34,9 +34,10 @@ public class ScoreController {
          return scoreService.save(sco);
      }
 
-    @PostMapping("/update")
+    @PutMapping("/update")
     @ResponseStatus(HttpStatus.CREATED)
-    public Score update (@RequestBody Score sco){return scoreService.save(sco);
+    public Score update (@RequestBody Score sco){
+         return scoreService.update(sco);
     }
 
     @DeleteMapping("/{id}")
