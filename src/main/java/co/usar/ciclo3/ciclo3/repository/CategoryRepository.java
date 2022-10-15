@@ -13,17 +13,17 @@ public class CategoryRepository {
     @Autowired
     private CategoryCrudRepository categoryCrudRepository;
 
-    public CategoryRepository(){
-    }
-
     public List<Category> getAll(){
+
         return (List<Category>) categoryCrudRepository.findAll();
     }
     public Optional<Category> getCategory(int id){
+
         return categoryCrudRepository.findById(id);
     }
 
     public Category save(Category cat){
+
         return categoryCrudRepository.save(cat);
     }
 

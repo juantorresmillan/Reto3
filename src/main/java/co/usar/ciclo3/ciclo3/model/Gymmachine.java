@@ -18,16 +18,16 @@ public class Gymmachine implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(length = 45, nullable = false)
+    @Column(length = 45)
     private String name;
 
-    @Column(length = 45, nullable = false)
+    @Column(length = 45)
     private String brand;
 
-    @Column(name = "years", length = 4, nullable = false)
+    @Column(name = "years", length = 4)
     private int year;
 
-    @Column(length = 250, nullable = false)
+    @Column(length = 250)
     private String description;
 
 

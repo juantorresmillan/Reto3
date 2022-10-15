@@ -17,13 +17,13 @@ public class Admin implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(length = 250, nullable = false)
+    @Column(length = 250)
     private String name;
 
-    @Column(length = 45, nullable = false)
+    @Column(length = 45)
     private String password;
 
-    @Column(length = 45, nullable = false)
+    @Column(length = 45)
     private String email;
 
 }

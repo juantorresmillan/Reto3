@@ -17,16 +17,16 @@ public class Client implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idClient;
 
-    @Column(length = 45, nullable = false)
+    @Column(length = 45)
     private String email;
 
-    @Column(length = 45, nullable = false)
+    @Column(length = 45)
     private String password;
 
-    @Column(length = 250, nullable = false)
+    @Column(length = 250)
     private String name;
 
-    @Column(length = 2, nullable = false)
+    @Column(length = 2)
     private int age;
 
     @OneToMany(cascade = {CascadeType.PERSIST},mappedBy="client")

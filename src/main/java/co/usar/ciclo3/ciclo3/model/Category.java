@@ -18,10 +18,10 @@ public class Category implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(length = 45, nullable = false)
+    @Column(length = 45)
     private String name;
 
-    @Column(length = 250, nullable = false)
+    @Column(length = 250)
     private String description;
 
     @OneToMany(cascade ={CascadeType.PERSIST},mappedBy = "category")

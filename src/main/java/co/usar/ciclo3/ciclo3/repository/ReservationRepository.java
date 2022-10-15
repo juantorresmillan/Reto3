@@ -18,10 +18,14 @@ public class ReservationRepository {
     @Autowired
     private ReservationCrudRepository reservationCrudRepository;
 
+<<<<<<< HEAD
     public ReservationRepository() {
     }
 
     public List<Reservation> getAll() {
+=======
+    public List<Reservation> getAll(){
+>>>>>>> parent of d226303 (Merge branch 'main' of https://github.com/juantorresmillan/Reto3)
         return (List<Reservation>) reservationCrudRepository.findAll();
     }
     public Optional<Reservation> getReservation(int id) {
