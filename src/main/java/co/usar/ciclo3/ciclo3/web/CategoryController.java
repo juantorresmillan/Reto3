@@ -1,6 +1,5 @@
 package co.usar.ciclo3.ciclo3.web;
 
-import co.usar.ciclo3.ciclo3.model.Admin;
 import co.usar.ciclo3.ciclo3.model.Category;
 import co.usar.ciclo3.ciclo3.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,38 +11,47 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/Category")
-@CrossOrigin(origins = "*", methods = {RequestMethod.GET,RequestMethod.PUT,RequestMethod.DELETE,RequestMethod.POST})
+@CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.PUT, RequestMethod.DELETE,
+        RequestMethod.POST })
 public class CategoryController {
 
-     @Autowired
+    @Autowired
     private CategoryService categoryService;
 
-     @GetMapping("/all")
-     public List<Category> getCategory(){
-         return categoryService.getAll();
-     }
+    @GetMapping("/all")
+    public List<Category> getAllCategory() {
 
-     @GetMapping("/{id}")
-     public Optional<Category> getCategory(@PathVariable("id")Integer id){
-         return categoryService.getCategory(id);
-     }
+        return categoryService.getAll();
 
-     @PostMapping("/save")
-     @ResponseStatus(HttpStatus.CREATED)
-     public Category save (@RequestBody Category cat){
-         return categoryService.save(cat);
-     }
+    }
+
+    @GetMapping("/{id}")
+    public Optional<Category> getCategory(@PathVariable("id") int id) {
+        return categoryService.getCategory(id);
+
+    }
+
+    @PostMapping("/save")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Category save(@RequestBody Category c) {
+        return categoryService.save(c);
+
+    }
 
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.CREATED)
-    public Category update (@RequestBody Category cat){
-         return categoryService.update(cat);
+    public Category update(@RequestBody Category ct) {
+
+        return categoryService.actualizarCategory(ct);
+
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public boolean delete(@PathVariable Integer id) {
+    public boolean delete(@PathVariable("id") int id) {
+
         return categoryService.delete(id);
+
     }
 
 }
