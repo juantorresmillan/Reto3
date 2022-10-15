@@ -13,6 +13,9 @@ public class MessageRepository {
     @Autowired
     private MessageCrudRepository messageCrudRepository;
 
+    public MessageRepository(){
+    }
+
     public List<Message> getAll(){
         return (List<Message>) messageCrudRepository.findAll();
     }

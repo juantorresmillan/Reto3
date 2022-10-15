@@ -13,6 +13,9 @@ public class ScoreRepository {
     @Autowired
     private ScoreCrudRepository scoreCrudRepository;
 
+    public ScoreRepository(){
+    }
+
     public List<Score> getAll(){
         return (List<Score>) scoreCrudRepository.findAll();
     }

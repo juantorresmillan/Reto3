@@ -37,16 +37,20 @@ public class MessageService {
 
     public Message update(Message mes){
         Integer id = mes.getIdMessage();
-        if(id==null){
-            Optional<Message> gymaux = messageRepository.getMessage(mes.getIdMessage());
-            if(!gymaux.isEmpty()){
+        if(id != null){
+            Optional<Message> mesaux = messageRepository.getMessage(mes.getIdMessage());
+            if(!mesaux.isEmpty()){
                 if(mes.getMessageText() != null){
-                    gymaux.get().setMessageText(mes.getMessageText());
+                    mesaux.get().setMessageText(mes.getMessageText());
                 }
-                return  messageRepository.save(gymaux.get());
+                messageRepository.save(mesaux.get());
+                return  mesaux.get();
+            } else {
+                return mes;
             }
+        } else {
+            return mes;
         }
-        return mes;
     }
 
     public boolean delete(int idClient){

@@ -1,7 +1,6 @@
 package co.usar.ciclo3.ciclo3.services;
 
 import co.usar.ciclo3.ciclo3.model.Admin;
-import co.usar.ciclo3.ciclo3.model.Category;
 import co.usar.ciclo3.ciclo3.repository.AdminRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,13 +14,15 @@ public class AdminService {
     @Autowired
     private AdminRepository adminRepository;
 
+    public AdminService (){
+    }
+
     public List<Admin> getAll(){
         return adminRepository.getAll();
     }
     public Optional<Admin> getAdmin(int id){
         return adminRepository.getAdmin(id);
     }
-
 
     public Admin save(Admin adm){
         Integer id = adm.getId();
@@ -37,24 +38,23 @@ public class AdminService {
         }
     }
 
-    public Admin update(Admin adm){
+    public Admin update(Admin adm) {
         Integer id = adm.getId();
-        if(id==null){
+        if (id != null) {
             Optional<Admin> admaux = adminRepository.getAdmin(adm.getId());
-<<<<<<< HEAD
             if (!admaux.isEmpty()) {
                 if (adm.getName() != null) {
-=======
-            if(!admaux.isEmpty()){
-                if(adm.getName() != null){
->>>>>>> parent of d226303 (Merge branch 'main' of https://github.com/juantorresmillan/Reto3)
                     admaux.get().setName(adm.getName());
                 }
-                if(adm.getEmail()!=null){
+                if (adm.getEmail() != null) {
                     admaux.get().setEmail(adm.getEmail());
                 }
-                return  adminRepository.save(admaux.get());
+                if (adm.getPassword() != null) {
+                    admaux.get().setPassword(adm.getPassword());
+                }
+                return adminRepository.save(admaux.get());
             }
+            return adm;
         }
         return adm;
     }

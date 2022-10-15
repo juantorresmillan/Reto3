@@ -13,6 +13,9 @@ public class ClientRepository {
     @Autowired
     private ClientCrudRepository clientCrudRepository;
 
+    public ClientRepository(){
+    }
+
     public List<Client> getAll(){
         return (List<Client>) clientCrudRepository.findAll();
     }

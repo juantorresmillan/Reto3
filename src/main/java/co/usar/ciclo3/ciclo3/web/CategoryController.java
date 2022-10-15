@@ -1,5 +1,6 @@
 package co.usar.ciclo3.ciclo3.web;
 
+import co.usar.ciclo3.ciclo3.model.Admin;
 import co.usar.ciclo3.ciclo3.model.Category;
 import co.usar.ciclo3.ciclo3.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,39 +20,31 @@ public class CategoryController {
     private CategoryService categoryService;
 
     @GetMapping("/all")
-    public List<Category> getAllCategory() {
-
+    public List<Category> getCategory() {
         return categoryService.getAll();
-
     }
 
     @GetMapping("/{id}")
-    public Optional<Category> getCategory(@PathVariable("id") int id) {
+    public Optional<Category> getCategory(@PathVariable("id") Integer id) {
         return categoryService.getCategory(id);
-
     }
 
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
-    public Category save(@RequestBody Category c) {
-        return categoryService.save(c);
-
+    public Category save(@RequestBody Category cat) {
+        return categoryService.save(cat);
     }
 
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.CREATED)
-    public Category update(@RequestBody Category ct) {
-
-        return categoryService.actualizarCategory(ct);
-
+    public Category update(@RequestBody Category cat) {
+        return categoryService.update(cat);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public boolean delete(@PathVariable("id") int id) {
-
+    public boolean delete(@PathVariable Integer id) {
         return categoryService.delete(id);
-
     }
 
 }

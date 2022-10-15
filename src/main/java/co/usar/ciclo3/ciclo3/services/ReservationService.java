@@ -37,19 +37,26 @@ public class ReservationService {
 
     public Reservation update(Reservation res){
         Integer id = res.getIdReservation();
-        if(id==null){
+        if(id != null){
             Optional<Reservation> resaux = reservationRepository.getReservation(res.getIdReservation());
             if(!resaux.isEmpty()){
                 if(res.getStartDate() != null){
                     resaux.get().setStartDate(res.getStartDate());
                 }
-                if(res.getDevolutionDate()!=null){
+                if(res.getDevolutionDate() != null){
                     resaux.get().setDevolutionDate(res.getDevolutionDate());
                 }
-                return  reservationRepository.save(resaux.get());
+                if(res.getStatus() != null){
+                    resaux.get().setStatus(res.getStatus());
+                }
+                reservationRepository.save(resaux.get());
+                return  resaux.get();
+            } else {
+                return res;
             }
+        } else {
+            return res;
         }
-        return res;
     }
 
     public boolean delete(int idClient){

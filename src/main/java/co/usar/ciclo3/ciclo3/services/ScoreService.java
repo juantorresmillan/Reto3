@@ -37,17 +37,25 @@ public class ScoreService {
 
     public Score update(Score sco){
         Integer id = sco.getId();
-        if(id==null){
+        if(id != null){
             Optional<Score> scoaux = scoreRepository.getScore(sco.getId());
             if(!scoaux.isEmpty()){
                 if(sco.getMessage() != null) {
                     scoaux.get().setMessage(sco.getMessage());
                 }
-                return  scoreRepository.save(scoaux.get());
+                Integer scores = sco.getScores();
+                if (scores != null) {
+                    scoaux.get().setScores(sco.getScores());
+                }
+                    scoreRepository.save(scoaux.get());
+                    return  scoaux.get();
+                } else {
+                    return sco;
+                }
+            } else {
+                return sco;
             }
         }
-        return sco;
-    }
 
     public boolean delete(int idClient){
         boolean sco = getScore(idClient).map(reservation -> {

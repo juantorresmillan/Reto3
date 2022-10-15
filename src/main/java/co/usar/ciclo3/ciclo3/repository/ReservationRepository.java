@@ -2,7 +2,7 @@ package co.usar.ciclo3.ciclo3.repository;
 
 import co.usar.ciclo3.ciclo3.model.Client;
 import co.usar.ciclo3.ciclo3.model.Reservation;
-import co.usar.ciclo3.ciclo3.model.report.CountClient;
+import co.usar.ciclo3.ciclo3.model.Report.CountClient;
 import co.usar.ciclo3.ciclo3.repository.crud.ReservationCrudRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Query;
@@ -18,15 +18,11 @@ public class ReservationRepository {
     @Autowired
     private ReservationCrudRepository reservationCrudRepository;
 
-<<<<<<< HEAD
     public ReservationRepository() {
     }
 
     public List<Reservation> getAll() {
-=======
-    public List<Reservation> getAll(){
->>>>>>> parent of d226303 (Merge branch 'main' of https://github.com/juantorresmillan/Reto3)
-        return (List<Reservation>) reservationCrudRepository.findAll();
+           return (List<Reservation>) reservationCrudRepository.findAll();
     }
     public Optional<Reservation> getReservation(int id) {
         return reservationCrudRepository.findById(id);

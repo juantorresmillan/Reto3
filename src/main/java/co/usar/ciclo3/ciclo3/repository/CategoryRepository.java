@@ -13,6 +13,9 @@ public class CategoryRepository {
     @Autowired
     private CategoryCrudRepository categoryCrudRepository;
 
+    public CategoryRepository(){
+    }
+
     public List<Category> getAll(){
 
         return (List<Category>) categoryCrudRepository.findAll();
